@@ -12,10 +12,11 @@ function App() {
 
 
     <div className="App">
-      <PostItem/>
-      <PostItem/>
-      <PostItem/>
-      <PostItem/>
+      <PostItem post={{id:1, title:'Javascript', body:'Description my post'}} />
+      <PostItem post={{id:2, title:'Javascript', body:'Description my post'}} />
+      <PostItem post={{id:3, title:'Javascript', body:'Description my post'}} />
+      <PostItem post={{id:4, title:'Javascript', body:'Description my post'}} />
+      <PostItem post={{id:5, title:'Javascript', body:'Description my post'}} />
 
 
     </div>

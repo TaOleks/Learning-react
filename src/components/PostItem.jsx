@@ -1,13 +1,14 @@
 import React from 'react'
 
-function PostItem() {
+function PostItem(props) {
+
   return (
     <div>
         <div className="post">
     <div className="post-content">
-      <strong>1.Javascript</strong>
+      <strong>{props.post.id}. {props.post.title}</strong>
       <div>
-        Javascript - is a programming language
+        {props.post.body}
       </div>
     </div>
     <div className="post-btns">
