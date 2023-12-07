@@ -1,20 +1,30 @@
 
 import React from "react"
 import { useState } from "react";
+import Counter from "./components/Counter";
+import ClassCounter from "./components/ClassCounter";
 
 function App() {
-  const [likes, setLikes] = useState(0)
-
-  const increment= ()=>{setLikes (likes +1)}
-  const decrement= ()=>{setLikes (likes -1)}
+  
+  const [value, setValue] = useState('Text in input')
+ 
+  
   
   return (
     
     
     <div className="App">
-      <h1>{likes}</h1>
-     <button onClick={increment} >Increment</button>
-     <button onClick={decrement}>Decrement</button>
+      
+      <h2>{value}</h2>
+      <input 
+      type="text"
+      value={value}
+      onChange={(event) =>setValue(event.target.value)}
+      />
+    
+    <Counter/>
+    <ClassCounter/>
+    
     </div>
   );
 }
