@@ -14,7 +14,11 @@ const [posts, setPosts] = useState([
 {id:3, title:'Javascript 3', body:'Description my post'}
 ])
 
-
+const [title, setTitle] = useState('')
+const addNewPost = (e) =>{
+  e.preventDefault()
+console.log(title)
+}
 
 
 
@@ -24,9 +28,14 @@ const [posts, setPosts] = useState([
     <div className="App">
 
       <form>
-        <MyInput type='text' placeholder='Post name' />
+        {/* Controllable component */}
+        <MyInput
+        value={title}
+        onChange={e => setTitle(e.target.value) }
+         type='text'
+          placeholder='Post name' />
         <MyInput type='text' placeholder='Post describtion' />
-        <MyButton disabled >Create post</MyButton>
+        <MyButton onClick={addNewPost} >Create post</MyButton>
       </form>
 
     <PostList posts={posts} title='List of post 1'/>  
