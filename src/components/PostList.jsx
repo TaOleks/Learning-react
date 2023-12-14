@@ -2,6 +2,18 @@ import React from 'react'
 import PostItem from './PostItem'
 
 function PostList({posts,  title, remove}) {
+
+  if(!posts.length){
+    return(
+      
+        <h1
+          style={{ textAlign: 'center' }}> You don't have  posts  at all
+        </h1>
+      
+    )
+  }
+
+
   return (
     <div>
         <h1 style={{textAlign:'center'}}> {title}</h1>
