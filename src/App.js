@@ -1,5 +1,5 @@
 
-import React from "react"
+import React, { useEffect } from "react"
 import './styles/App.css'
 import { useState } from "react";
 import PostList from "./components/PostList";
@@ -15,6 +15,10 @@ function App() {
   const [filter, setFilter] = useState({sort:'', query:''})
   const [modal, setModal] = useState(false)
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
+
+  useEffect(() =>{
+    fetchPosts()
+  },[])
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
