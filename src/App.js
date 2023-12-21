@@ -10,7 +10,8 @@ import { usePosts } from "./hooks/usePosts";
 import PostService from "./API/PostService";
 import Loader from "./components/UI/loader/Loader";
 import { useFetching } from "./hooks/useFetching";
-import { getPageCount, getPagesArray } from "./utils/pages";
+import { getPageCount } from "./utils/pages";
+import Pagination from "./components/UI/pagination/Pagination";
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -23,10 +24,10 @@ function App() {
 
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
 
-  let pagesArray = getPagesArray(totalPages)
+  
   
 
-  const [fetchPosts, isPostLoading, postError] = useFetching ( async()=>{
+  const [fetchPosts, isPostLoading, postError] = useFetching ( async(limit, page)=>{
     const response = await  PostService.getAll(limit, page)
     setPosts(response.data)
     const totalCount = (response.headers['x-total-count'])
@@ -34,13 +35,12 @@ function App() {
   })
  
   useEffect(() =>{
-    fetchPosts()
-  }, [page])
+    fetchPosts(limit, page)
+  },[])
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
     setModal(false)
   }
-
 
 
   const removePost = (post) => {
@@ -50,9 +50,10 @@ function App() {
 
   const changePage = (page) =>{
     setPage(page)
+    fetchPosts(limit, page)
     
   }
- 
+  
   return (
     <div className="App">
       <button onClick={fetchPosts}>GET POST</button>
@@ -76,18 +77,14 @@ function App() {
         ? <div style ={{display:'flex', justifyContent: 'center', marginTop: 50}}><Loader/></div>
         :<PostList remove={removePost} posts={sortedAndSearchedPosts} title='List of post 1' />
          }
+ 
+        <Pagination
+         page={page} 
+         totalPages={totalPages}
+         changePage={changePage} 
+         
+         /> 
 
-         <div className='page__wraper'>
-           {pagesArray.map(p =>
-          <span 
-           onClick={()=> changePage(p)}
-           key = {p}
-           className={page === p? 'page page__current':'page'}>
-            {p}</span>
-          )}
-         </div>
-
-        
     </div>
   );
 }
