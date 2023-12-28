@@ -1,33 +1,19 @@
 
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import './styles/App.css'
 import React from 'react'
-import About from './pages/About'
-import Posts from './pages/Posts'
+
+import Navbar from './components/UI/Navbar/Navbar'
+
+import AppRouter from './components/AppRouter'
 
 function App() {
   return (
    
       <BrowserRouter>
+     <Navbar/>
+     <AppRouter/>
 
-      <div className='navbar'>
-        <div className='navbar__links'>
-       {/* bad practice */}
-       {/* <a href='/posts'>Posts </a> */}
-        {/* Good practice */}
-          <Link to='/about'>About website </Link>
-          <Link to='/posts'>Posts </Link>
-        </div>
-      </div>
-      <Routes>
-        <Route path="/about" element={<About/>}/> 
-          
-         <Route path="/posts" element={<Posts/>}/>
-      </Routes>
-          
-
-        
-      
       </BrowserRouter>
      
     
