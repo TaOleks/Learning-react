@@ -21,7 +21,9 @@ width: 800px;
     justify-content: space-between;
     align-items: center;
 }
-
+.post-btns{
+  display: flex;
+}
 
 .post-enter {
     transform: translateX(-350px); 
