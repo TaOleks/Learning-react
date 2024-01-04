@@ -4,7 +4,7 @@ import { useNavigate} from "react-router-dom"
 
 function PostItem(props) {
   const router = useNavigate()
-  console.log(router)
+  
   return (
     <div>
       <div className="post">
